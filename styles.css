@@ -1,0 +1,364 @@
+:root {
+            --bg: #f5f7fa;
+            --card-bg: white;
+            --text: #2c3e50;
+            --border: #ddd;
+            --shadow: rgba(0,0,0,0.1);
+            --progress: #e0e0e0;
+            --accent: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --alcohol: #e91e63;
+            --disabled: #aaa;
+        }
+        [data-theme="dark"] {
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --text: #e0e0e0;
+            --border: #333;
+            --shadow: rgba(0,0,0,0.3);
+            --progress: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            color: var(--text);
+            transition: background 0.4s ease;
+        }
+        [data-theme="dark"] body {
+            background: #0a0a0a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .plate, .sidebar, .health-tools, .drinks, .history {
+            background: var(--card-bg);
+            padding: 22px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px var(--shadow);
+            flex: 1 1 300px;
+        }
+        .drinks, .history {
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh;
+        }
+        .drinks-content, .history-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        .drinks-content::-webkit-scrollbar, .history-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .drinks-content::-webkit-scrollbar-track, .history-content::-webkit-scrollbar-track {
+            background: var(--progress);
+            border-radius: 10px;
+        }
+        .drinks-content::-webkit-scrollbar-thumb, .history-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .plate { text-align: center; }
+        .dairy-circle {
+            width: 90px;
+            height: 90px;
+            background: #b3d9ff;
+            border-radius: 50%;
+            margin: 10px auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #1e3a8a;
+            border: 3px solid #1e40af;
+            transition: all 0.4s ease;
+        }
+        .dairy-circle.filled {
+            background: #2563eb !important;
+            color: white;
+        }
+        .plate-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 20px auto;
+            background: #f0f0f0;
+            border-radius: 50%;
+            border: 4px solid #333;
+            overflow: hidden;
+        }
+        .section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: all 0.4s ease;
+            color: #333;
+        }
+        .fruits { top: 0; left: 0; background: #ffb3b3; }
+        .vegetables { top: 0; right: 0; background: #b3ffb3; }
+        .grains { bottom: 0; left: 0; background: #ffffb3; }
+        .proteins { bottom: 0; right: 0; background: #b3b3ff; }
+        .filled { background: var(--accent) !important; color: white; }
+        .search-box {
+            position: relative;
+            margin: 10px 0;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1em;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .search-box input:disabled {
+            background: #f0f0f0;
+            color: var(--disabled);
+            cursor: not-allowed;
+        }
+        .search-box label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .dropdown-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 10px var(--shadow);
+            display: none;
+        }
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 0.95em;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+        .dropdown-item:hover, .dropdown-item.selected {
+            background: rgba(33, 150, 243, 0.1);
+        }
+        .dropdown-item small {
+            color: #888;
+            font-size: 0.8em;
+        }
+        .serving-controls {
+            display: flex;
+            gap: 8px;
+            margin: 10px 0;
+            align-items: center;
+        }
+        .serving-controls select,
+        .serving-controls input[type="number"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9em;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .serving-controls input[type="number"] {
+            width: 70px;
+        }
+        .serving-label {
+            font-size: 0.85em;
+            color: #777;
+            margin-top: 4px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        button {
+            background: var(--accent);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #45a049; }
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        .remove-btn {
+            background: var(--danger);
+            padding: 6px 10px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .food-item, .drink-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.03);
+            border-radius: 8px;
+            margin: 8px 0;
+            position: relative;
+        }
+        .food-item { border-left: 4px solid var(--accent); }
+        .drink-item { border-left: 4px solid #2196f3; }
+        .alcohol-item { border-left: 4px solid var(--alcohol); }
+        .warning-badge {
+            background: var(--warning);
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        .alcohol-warning {
+            background: #ffebee;
+            border: 1px solid #e57373;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .nutrient-tracker, .macro-tracker {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border);
+        }
+        .nutrient-item, .macro-item {
+            margin-bottom: 10px;
+        }
+        .nutrient-label, .macro-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .progress-container {
+            height: 8px;
+            background: var(--progress);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0;
+            transition: width 0.4s ease;
+        }
+        .progress-bar.vitamin { background: #8bc34a; }
+        .progress-bar.mineral { background: #009688; }
+        .progress-bar.high { background: var(--warning); }
+        .progress-bar.excess { background: var(--danger); }
+        .progress-bar.protein { background: #2196f3; }
+        .progress-bar.carbs { background: var(--warning); }
+        .progress-bar.fat { background: var(--danger); }
+        .nutrient-total, .macro-total {
+            font-size: 0.75em;
+            color: #888;
+            text-align: right;
+            margin-top: 1px;
+        }
+        .bmi-result, .meal-analysis {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .recommendations { margin-top: 20px; }
+        h2, h3 { margin-top: 0; color: var(--text); }
+        .unit-toggle, .theme-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        .unit-btn, .theme-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .unit-btn.active, .theme-btn.active {
+            background: #2196f3;
+            color: white;
+            border-color: #1976d2;
+        }
+        .alcohol-tips {
+            background: #f3e5f5;
+            border: 1px solid #ba68c8;
+            color: #6a1b9a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        .history-item {
+            padding: 12px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .history-item:hover {
+            background: rgba(33, 150, 243, 0.1);
+        }
+        .history-date {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .history-summary {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 4px;
+        }
+        .save-meal-btn {
+            background: #2196f3;
+            margin-top: 10px;
+        }
+        .clear-history-btn {
+            background: #9e9e9e;
+            font-size: 0.8em;
+            padding: 6px 10px;
+        }
+        .search-step {
+            font-size: 0.9em;
+            color: #555;
+            margin: 8px 0 4px;
+            font-weight: 500;
+        }
+        .search-step strong {
+            color: var(--accent);
+        }
